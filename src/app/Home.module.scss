@@ -1,0 +1,23 @@
+.container {
+  padding: 30px 40px;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.message {
+  padding: 50px;
+  text-align: center;
+}
+
+.loadMoreTrigger {
+  height: 40px;
+}
