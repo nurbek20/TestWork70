@@ -30,7 +30,7 @@ export default function LoginPage() {
 
             login(response.data);
             router.push('/');
-        } catch (err: any) {
+        } catch (err) {
             setError(err.response?.data?.message || 'Login failed');
         } finally {
             setLoading(false);
