@@ -10,7 +10,6 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const [skip, setSkip] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const observerRef = useRef<HTMLDivElement | null>(null);
@@ -19,7 +18,6 @@ export default function HomePage() {
     if (loading || !hasMore) return;
 
     setLoading(true);
-    setError('');
     try {
       const res = await api.get(`https://dummyjson.com/products?limit=12&skip=${skip}`);
       const newProducts = res.data.products;
@@ -29,9 +27,7 @@ export default function HomePage() {
       if (newProducts.length < 12) {
         setHasMore(false);
       }
-    } catch {
-      setError('Failed to load products.');
-    } finally {
+    }finally {
       setLoading(false);
     }
   };
@@ -61,8 +57,8 @@ export default function HomePage() {
       <div className={styles.container}>
         <h2 className={styles.title}>Latest Products</h2>
         <div className={styles.grid}>
-          {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          {products.map((product,index) => (
+              <ProductCard key={index} product={product} />
           ))}
         </div>
         {loading && <p className={styles.message}>Loading...</p>}

@@ -30,8 +30,9 @@ export default function LoginPage() {
 
             login(response.data);
             router.push('/');
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (err) {
-            setError(err.response?.data?.message || 'Login failed');
+            setError('Login failed');
         } finally {
             setLoading(false);
         }
