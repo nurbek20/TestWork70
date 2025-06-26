@@ -19,6 +19,7 @@ export default function Header() {
                     {user ? (
                         <>
                             <span>{user.firstName} {user.lastName}</span>
+                            {user.image && <img src={user.image} className={styles.avatar} />}
                             <button onClick={logout}>Logout</button>
                         </>
                     ) : (

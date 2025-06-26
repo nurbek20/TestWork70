@@ -6,6 +6,7 @@
   .topBar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 8px 20px;
     background-color: #1f1f2e;
 
@@ -15,6 +16,7 @@
 
     .auth {
       display: flex;
+      align-items: center;
       gap: 15px;
 
       a, button {
@@ -22,6 +24,13 @@
         background: none;
         border: none;
         cursor: pointer;
+      }
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-left: 8px;
       }
     }
   }

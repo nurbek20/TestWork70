@@ -10,9 +10,7 @@ export default function Footer() {
     return (
         <footer className={styles.footer}>
             {user ? (
-                <p>
-                    © {year} Logged as <strong>{user.email}</strong>
-                </p>
+                <p>© {year} Logged as <strong>{user.username}@dummyjson.com</strong></p>
             ) : (
                 <p>© {year}</p>
             )}

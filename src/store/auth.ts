@@ -1,10 +1,12 @@
 import { create } from 'zustand';
 
 interface User {
+    id: number;
+    username: string;
     firstName: string;
     lastName: string;
-    email: string;
     token: string;
+    image?: string;
 }
 
 interface AuthState {
@@ -18,3 +20,4 @@ export const useAuthStore = create<AuthState>((set) => ({
     login: (user) => set({ user }),
     logout: () => set({ user: null }),
 }));
+

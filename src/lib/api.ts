@@ -1,42 +1,15 @@
 import axios from 'axios';
+import { useAuthStore } from '@/store/auth';
 
-const api = axios.create();
+const api = axios.create({
+    baseURL: 'https://dummyjson.com',
+});
 
-api.interceptors.request.use(async (config) => {
-    if (config.url === '/login') {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const { username, password } = config.data;
-
-                if (username === 'admin' && password === 'admin') {
-                    resolve({
-                        ...config,
-                        adapter: () =>
-                            Promise.resolve({
-                                data: {
-                                    firstName: 'Admin',
-                                    lastName: 'User',
-                                    email: 'admin@site.com',
-                                    token: 'mock-jwt-token',
-                                },
-                                status: 200,
-                                statusText: 'OK',
-                                headers: {},
-                                config,
-                            }),
-                    });
-                } else {
-                    reject({
-                        response: {
-                            data: { message: 'Invalid credentials' },
-                            status: 401,
-                        },
-                    });
-                }
-            }, 1000);
-        });
+api.interceptors.request.use((config) => {
+    const token = useAuthStore.getState().user?.token;
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
 });
 

@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## ✨ README: JWT Auth + Product List (DummyJSON API)
 
-## Getting Started
+This is a Next.js (App Router) project implementing JWT-based user authentication and product listing using the [DummyJSON public API](https://dummyjson.com/).
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ♻ Tech Stack
+
+* **Next.js (App Router)**
+* **TypeScript**
+* **Zustand** (state management)
+* **Axios** (HTTP requests)
+* **SCSS Modules** (styling)
+* **Prettier + ESLint + Stylelint** (code quality)
+
+---
+
+## ✉️ Functional Requirements (Implemented)
+
+### 1. User Authorization (JWT)
+
+* Login page with username & password fields
+* Form validation (min 3 characters)
+* On success, token and user info stored in Zustand
+* On failure, error message shown
+* Redirect to `/` on success
+
+### 2. Product List
+
+* Displays 12 products on the home page
+* Each product shows image, title, category, and price
+* If user is logged in, "Add to cart" button is shown
+
+### 3. Header
+
+* Not logged in: shows link to Login page
+* Logged in: shows user's `firstName lastName`, avatar, and Logout
+
+### 4. Footer
+
+* Not logged in: © YEAR
+* Logged in: © YEAR Logged as `username@dummyjson.com`
+
+### 5. Additional
+
+* Fully responsive (mobile/desktop)
+* SSR for initial products (optional)
+* Lazy loading with `IntersectionObserver`
+
+---
+
+## ⚡ Login Test Account
+
+Use these credentials (from DummyJSON docs):
+
+```txt
+username: kminchelle
+password: 0lelplR
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌄 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── login/page.tsx        # Login page
+│   ├── layout.tsx            # Shared layout with Header/Footer
+│   └── page.tsx              # Home page with product list
+├── components/               # UI components
+├── store/                    # Zustand store (auth.ts)
+├── lib/api.ts                # Axios instance
+├── styles/                   # SCSS modules
+├── types/                    # TS interfaces
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ▶️ Run the project locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git clone <repo-url>
+cd <project-folder>
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Then open [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Features to consider
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* LocalStorage persist for auth (optional)
+* Add-to-cart implementation
+* Token-based protected APIs
+* Skeleton loaders and UX polishing
+
+---
+
+## 🌟 Author
+
+Developed as part of a test task using real API authorization (JWT) + public product list from DummyJSON.

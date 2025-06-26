@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from './Login.module.scss';
 import { useAuthStore } from '@/store/auth';
 import api from '@/lib/api';
+import axios from "axios";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -26,13 +27,15 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
-            const response = await api.post('/login', { username, password });
-
-            login(response.data);
+            const res = await api.post('/auth/login', { username, password });
+            login(res.data);
             router.push('/');
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (err) {
-            setError('Login failed');
+        } catch (err: any) {
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || 'Login failed');
+            } else {
+                setError('Something went wrong');
+            }
         } finally {
             setLoading(false);
         }
