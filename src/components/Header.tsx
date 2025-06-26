@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styles from '../styles/components/Header.module.scss';
 import { useAuthStore } from '@/store/auth';
+import Image from 'next/image';
 
 export default function Header() {
     const { user, logout } = useAuthStore();
@@ -19,7 +20,12 @@ export default function Header() {
                     {user ? (
                         <>
                             <span>{user.firstName} {user.lastName}</span>
-                            {user.image && <img src={user.image} className={styles.avatar} />}
+                            {user.image && <Image
+                                src={user.image}
+                                width={32}
+                                height={32}
+                                alt={`${user.firstName} avatar`}
+                                className={styles.avatar}/>}
                             <button onClick={logout}>Logout</button>
                         </>
                     ) : (

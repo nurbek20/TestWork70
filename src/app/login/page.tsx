@@ -30,7 +30,7 @@ export default function LoginPage() {
             const res = await api.post('/auth/login', { username, password });
             login(res.data);
             router.push('/');
-        } catch (err: any) {
+        } catch (err) {
             if (axios.isAxiosError(err)) {
                 setError(err.response?.data?.message || 'Login failed');
             } else {
